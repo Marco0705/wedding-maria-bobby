@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/wedding-guille-and-maria/browser/**/*",
+      "src": "dist/wedding-guille-and-maria/browser/**",
       "use": "@vercel/static"
     }
   ],
