@@ -1,5 +1,4 @@
 {
-  "buildCommand": "ng build",
-  "outputDirectory": "dist/wedding-maria-bobby/browser",
-  "framework": "angular"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "dist/wedding-maria-bobby/browser"
 }
