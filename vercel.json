@@ -1,0 +1,9 @@
+{
+  "builds": [
+    {
+      "src": "dist/wedding-maria-and-bobby/browser/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/index.html" }]
+}
