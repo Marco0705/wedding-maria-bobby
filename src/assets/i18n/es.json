@@ -1,0 +1,116 @@
+{
+  "navbar": {
+    "inicio": "Inicio",
+    "guardaFecha": "Guarda la fecha",
+    "localizacion": "Localización",
+    "historia": "Nuestra historia",
+    "asistencia": "Confirma tu asistencia",
+    "listaBodas": "Lista de bodas"
+  },
+
+  "home": {
+    "title": "María & Bobby",
+    "subtitle": "¡Se vuelven a casar!",
+    "day": "Jueves",
+    "date": "28",
+    "monthYear": "Mayo 2026"
+  },
+
+  "weddingTimes": {
+    "title": "¡Guarda la fecha!",
+    "subtitle": "Hasta el gran día!",
+    "programTitle": "Programa del día",
+    "ceremony": "Ceremonia",
+    "cocktail": "Cóctel",
+    "dinner": "Cena",
+    "disco": "Disco",
+    "snack": "Recena",
+    "moreDisco": "Más disco"
+  },
+
+  "location": {
+    "title": "Localización y dónde alojarse",
+    "addressLabel": "Dirección de la finca",
+    "address": "Fuentearcos. Carretera Vicálvaro a Rivas del Jarama, Km 2, Vicálvaro, 28052 Madrid",
+    "hotelsIntro": "¿Vienes desde fuera para celebrar con nosotros? Puedes alojarte en el hotel que prefieras, pero para hacerte más fácil la elección hemos preparado tres recomendaciones que están cerca y son muy cómodas.",
+    "hotelsTitle": "¿Dónde alojarse?",
+    "hotel1": {
+      "name": "Ilunion Alcalá Norte",
+      "address": "C. de San Romualdo, 30, San Blas-Canillejas, 28037 Madrid, España.",
+      "note": "A menos de 5 km de la finca de bodas."
+    },
+    "hotel2": {
+      "name": "Oriente Palace Apartments",
+      "address": "Calle Lepanto 6, Madrid 28013, España.",
+      "note": "En el centro de Madrid, perfecto para hacer turismo."
+    },
+    "hotel3": {
+      "name": "Petit Palace Puerta del Sol",
+      "address": "Calle del Arenal, 4, 28013 Madrid, España.",
+      "note": "En el centro de Madrid, perfecto para hacer turismo."
+    },
+    "imageAlt": "Pareja caminando por la calle"
+  },
+
+  "ourStory": {
+    "title": "Nuestra historia",
+    "p1": "Nos conocimos brevemente en 2017, en una conversación casual que duró menos de un minuto. Nos despedimos como dos desconocidos, pero dos meses después María vino a una clase de boxeo que yo impartía. Le pedí una cita y me rechazó de inmediato. Mi segundo intento no lo fue.",
+    "p2": "Yo estaba en mi último año de universidad y María estaba en Estados Unidos durante su año como au pair. Cuando nos conocimos solo le quedaban siete meses para volver a España, así que decidimos aprovechar cada segundo. Fuimos al cine, jugamos al laser tag y al minigolf, hicimos un viaje en autocaravana, nos apuntamos a una ruta de pizzas por Brooklyn, salimos de fiesta por la ciudad, representamos a Escocia en las Olimpiadas de la Cerveza y escalamos montañas en Acadia.",
+    "p3": "Y entonces, un día de verano en Sandy Beach, en Cohasset, María me preguntó: «¿Te imaginas todo lo que tendremos que pasar para estar juntos?»",
+    "p4": "Ese verano pasó tan rápido como pasan siempre los veranos. Y cuando terminó, llegó el momento en que María tenía que volver a casa. Pero no se fue sin billetes para volver a Boston en octubre. Después de ese viaje, planeamos una visita de seis semanas para que yo fuera a Madrid y conociera a su familia. Durante los dos años siguientes nos visitaríamos siete veces.",
+    "p5": "Finalmente, el 2 de febrero de 2020, le pedí matrimonio en el aeropuerto de Boston. Tan solo un mes después, COVID hizo que María no pudiera ni salir a las calles de Madrid, mucho menos subirse a un avión.",
+    "p6": "No volveríamos a vernos durante 586 días.",
+    "p7": "Pero solo catorce días después de reencontrarnos, nos convertimos en marido y mujer, descalzos, en una ceremonia en el jardín de mis padres, Bob y Robin.",
+    "p8": "Andrés y Marisol vieron a su hija casarse en otro país, a través de una pantalla de televisión. El 28 de mayo estamos deseando de darles a ellos —y al resto de nuestra familia española— la boda que se merecen.",
+    "p9": "Por favor, confirma tu asistencia en la siguiente sección."
+  },
+
+  "confirmation": {
+    "please": "Por favor",
+    "title": "Confirma tu asistencia",
+    "before": "antes del",
+    "date": "ABRIL 15 2026",
+    "info": "¡Qué ilusión poder celebrarlo contigo! Por favor, completa el formulario antes de la fecha indicada. ¡Esperamos verte pronto!",
+    "attendanceLabel": "¿CONTAMOS CONTIGO?",
+    "attendanceYes": "Sí",
+    "attendanceNo": "No",
+    "fullName": "NOMBRE COMPLETO",
+    "fullNamePlaceholder": "Ingresa tu nombre",
+    "guestLabel": "TOTAL DE ASISTENTES (TÚ INCLUIDO)",
+    "guestName": "NOMBRE DEL INVITADO",
+    "guestNamePlaceholder": "Ingresa el nombre de tu acompañante",
+    "allergies": "ALERGIAS ALIMENTICIAS",
+    "allergiesPlaceholder": "Especifica tus alergias (opcional)",
+    "submit": "Confirmar",
+    "sending": "Enviando...",
+    "errors": {
+      "fullName": "El nombre completo es obligatorio",
+      "guestName": "El nombre del invitado es obligatorio",
+      "attendance": "Debes seleccionar una opción",
+      "required": "Este campo es obligatorio"
+    },
+    "swal": {
+      "successTitle": "Confirmación enviada",
+      "successText": "¡Tu asistencia ha sido confirmada con éxito!",
+      "errorTitle": "Error",
+      "errorText": "No se pudo enviar la confirmación. Intenta de nuevo más tarde."
+    }
+  },
+
+  "weddingList": {
+    "toastCopied": "¡Número de cuenta copiado!",
+    "title": "¡Lo más importante es que estés con nosotros en este día tan especial!",
+    "message": "Si aún así quieres darnos un pequeño empujón para nuestra futura luna de miel (la que no tuvimos hace 5 años), puedes usar nuestras cuentas en EE.UU. o España, o como te resulte más cómodo.",
+    "spanishAccount": {
+      "title": "Cuenta Española - CaixaBank",
+      "ibanLabel": "IBAN"
+    },
+    "usaAccount": {
+      "title": "Cuenta Americana - Rockland Federal Credit Union",
+      "accountLabel": "Account Number",
+      "routingLabel": "Routing Number"
+    },
+    "copy": "Copiar",
+    "finalMessage": "¡Estamos deseando celebrar nuestra boda española contigo!"
+  }
+}

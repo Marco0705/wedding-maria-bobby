@@ -1,0 +1,116 @@
+{
+  "navbar": {
+    "inicio": "Home",
+    "guardaFecha": "Save the date",
+    "localizacion": "Location",
+    "historia": "Our story",
+    "asistencia": "Confirm attendance",
+    "listaBodas": "Wedding list"
+  },
+
+  "home": {
+    "title": "Maria & Bobby",
+    "subtitle": "They're getting married again!",
+    "day": "Thursday",
+    "date": "28",
+    "monthYear": "May 2026"
+  },
+
+  "weddingTimes": {
+    "title": "Save the Date!",
+    "subtitle": "Until the big day!",
+    "programTitle": "Schedule of the Day",
+    "ceremony": "Ceremony",
+    "cocktail": "Cocktail",
+    "dinner": "Dinner",
+    "disco": "Disco",
+    "snack": "Late Snack",
+    "moreDisco": "More Disco"
+  },
+
+  "location": {
+    "title": "Location & Accommodation",
+    "addressLabel": "Venue Address",
+    "address": "Fuentearcos. Carretera Vicálvaro a Rivas del Jarama, Km 2, Vicálvaro, 28052 Madrid",
+    "hotelsIntro": "Are you coming from out of town to celebrate with us? You can stay at the hotel of your choice, but to make it easier, we prepared three recommended hotels nearby that are very comfortable.",
+    "hotelsTitle": "Where to stay?",
+    "hotel1": {
+      "name": "Ilunion Alcalá Norte",
+      "address": "C. de San Romualdo, 30, San Blas-Canillejas, 28037 Madrid, Spain.",
+      "note": "Less than 5 km from the wedding venue."
+    },
+    "hotel2": {
+      "name": "Oriente Palace Apartments",
+      "address": "Calle Lepanto 6, Madrid 28013, Spain.",
+      "note": "In central Madrid, perfect for sightseeing."
+    },
+    "hotel3": {
+      "name": "Petit Palace Puerta del Sol",
+      "address": "Calle del Arenal, 4, 28013 Madrid, Spain.",
+      "note": "In central Madrid, perfect for sightseeing."
+    },
+    "imageAlt": "Couple walking on the street"
+  },
+
+  "ourStory": {
+    "title": "Our Story",
+    "p1": "We met briefly in 2017 with a casual conversation that lasted less than a minute. We left as strangers but, two months later, Maria took a boxing class that I was running. I asked Maria on a date and was promptly turned down. My second attempt wasn’t.",
+    "p2": "I was a college senior, and Maria was visiting the States for her au pair year. She had only seven months left when we met, so we decided to make every second count. We went to the movies, played laser tag and mini golf, took an RV trip, joined a Brooklyn pizza tour, partied in the city, represented Scotland in the Beer Olympics, and climbed mountains in Acadia.",
+    "p3": "And then one summer day at Sandy Beach in Cohasset, Maria asked me, “Can you imagine how much we will have to go through to stay together?”",
+    "p4": "That summer passed as fast as summer always does. And when it did, it was time for Maria to return home. But she didn’t leave without tickets for a flight back to Boston in October. After that, we planned a six-week visit for me to go to Madrid and meet her family. We would visit each other seven times over the next two years.",
+    "p5": "Finally, on February 2, 2020, I proposed to Maria at Logan Airport. Just one month later, COVID meant Maria couldn’t even go out into the streets of Madrid, let alone get on an airplane.",
+    "p6": "We wouldn’t see each other again for 586 days.",
+    "p7": "But just fourteen days after we were reunited, we became husband and wife in a barefoot wedding ceremony in my parents backyard, Bob and Robin’s backyard.",
+    "p8": "Andres and Marisol watched their daughter get married in another country, from a TV screen. On May X, we are excited to give them—and the rest of our Spanish family—the wedding they deserve.",
+    "p9": "Please, RSVP in the next section."
+  },
+
+  "confirmation": {
+    "please": "Please",
+    "title": "RSVP",
+    "before": "before",
+    "date": "APRIL 15 2026",
+    "info": "We are excited to celebrate with you! Please complete the form before the indicated date. We look forward to seeing you!",
+    "attendanceLabel": "ARE YOU ATTENDING?",
+    "attendanceYes": "Yes",
+    "attendanceNo": "No",
+    "fullName": "FULL NAME",
+    "fullNamePlaceholder": "Enter your name",
+    "guestLabel": "TOTAL ATTENDEES (INCLUDING YOU)",
+    "guestName": "GUEST NAME",
+    "guestNamePlaceholder": "Enter your guest's name",
+    "allergies": "FOOD ALLERGIES",
+    "allergiesPlaceholder": "Specify your allergies (optional)",
+    "submit": "Confirm",
+    "sending": "Sending...",
+    "errors": {
+      "fullName": "Full name is required",
+      "guestName": "Guest name is required",
+      "attendance": "You must select an option",
+      "required": "This field is required"
+    },
+    "swal": {
+      "successTitle": "Confirmation sent",
+      "successText": "Your attendance has been successfully confirmed!",
+      "errorTitle": "Error",
+      "errorText": "Could not send the confirmation. Please try again later."
+    }
+  },
+
+  "weddingList": {
+    "toastCopied": "Account number copied!",
+    "title": "The most important thing is that you are with us on this special day!",
+    "message": "If you still want to give us a little boost for our future honeymoon (the one we didn’t have 5 years ago), you can use our accounts in the USA or Spain, or whichever is more convenient.",
+    "spanishAccount": {
+      "title": "Spanish Account - CaixaBank",
+      "ibanLabel": "IBAN"
+    },
+    "usaAccount": {
+      "title": "American Account - Rockland Federal Credit Union",
+      "accountLabel": "Account Number",
+      "routingLabel": "Routing Number"
+    },
+    "copy": "Copy",
+    "finalMessage": "We look forward to celebrating our Spanish wedding with you!"
+  }
+}

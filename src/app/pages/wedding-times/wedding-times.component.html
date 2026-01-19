@@ -1,0 +1,52 @@
+<section
+  id="guarda-fecha"
+  class="relative min-h-screen flex flex-col items-center justify-center text-center text-white p-6 mt-6"
+  style="background-image: url(/assets/saveDate.jpg);"
+>
+  <!-- Overlay oscuro -->
+  <div class="overlay"></div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 animate-fadeIn max-w-4xl w-full">
+    <h1 class="text-4xl md:text-5xl font-serif mb-2 drop-shadow-lg">
+      {{ translate.instant("weddingTimes.title") }}
+    </h1>
+    <p class="text-lg md:text-xl italic mb-6 drop-shadow-lg">
+      {{ translate.instant("weddingTimes.subtitle") }}
+    </p>
+
+    <app-countdown-timer [targetDate]="weddingDate"></app-countdown-timer>
+
+    <div class="mt-8 text-left">
+      <h2 class="text-2xl font-semibold mb-4">
+        {{ translate.instant("weddingTimes.programTitle") }}
+      </h2>
+      <ul class="border-l-2 border-gray-300 pl-4">
+        <li class="mb-2">
+          <span class="font-bold">19:00</span> -
+          {{ translate.instant("weddingTimes.ceremony") }}
+        </li>
+        <li class="mb-2">
+          <span class="font-bold">19:30</span> -
+          {{ translate.instant("weddingTimes.cocktail") }}
+        </li>
+        <li class="mb-2">
+          <span class="font-bold">20:45</span> -
+          {{ translate.instant("weddingTimes.dinner") }}
+        </li>
+        <li class="mb-2">
+          <span class="font-bold">22:30</span> -
+          {{ translate.instant("weddingTimes.disco") }}
+        </li>
+        <li class="mb-2">
+          <span class="font-bold">00:00</span> -
+          {{ translate.instant("weddingTimes.snack") }}
+        </li>
+        <li class="mb-2">
+          <span class="font-bold">00:30</span> -
+          {{ translate.instant("weddingTimes.moreDisco") }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+nav {
+  background-color: #e5dacf;
+}
+
+button {
+  cursor: pointer;
+}
+
+section {
+  scroll-margin-top: 80px; /* evita que el navbar fijo tape la sección */
+}

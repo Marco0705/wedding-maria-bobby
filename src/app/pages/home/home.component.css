@@ -1,0 +1,38 @@
+/* Animación suave de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* Se asegura que la sección cubra toda la pantalla y la imagen de fondo se vea correctamente */
+#inicio {
+  min-height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay más sutil */
+#inicio .overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* negro con 30% de opacidad */
+}
+
+/* Texto con sombra para mejorar legibilidad */
+#inicio h1,
+#inicio p,
+#inicio div {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
