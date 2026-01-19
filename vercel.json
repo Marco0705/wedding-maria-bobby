@@ -1,4 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "dist/wedding-maria-and-bobby"
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
