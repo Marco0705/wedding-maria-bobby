@@ -1,0 +1,5 @@
+{
+  "buildCommand": "ng build",
+  "outputDirectory": "dist/wedding-maria-bobby/browser",
+  "framework": "angular"
+}
