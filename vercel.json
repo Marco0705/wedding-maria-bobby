@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/wedding-maria-and-bobby/**/*",
+      "src": "dist/wedding-guille-and-maria/browser/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -10,17 +10,6 @@
     {
       "src": "/(.*)",
       "dest": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*).(js|css|json|png|jpg|svg|woff2?)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
     }
   ]
 }
