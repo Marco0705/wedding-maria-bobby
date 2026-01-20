@@ -1,10 +1,13 @@
 <section
   id="inicio"
-  class="relative min-h-screen flex flex-col items-end justify-start text-right text-white pt-24 md:pt-32"
-  [ngStyle]="{'background-image': 'url(/assets/inicio.jpg)', 'background-size': 'cover', 'background-position': 'center'}"
+  class="relative min-h-screen flex flex-col items-end justify-start text-right text-white
+         pt-24 md:pt-32
+         bg-cover bg-center
+         md:bg-[position:top]"
+  style="background-image: url('/assets/inicio.jpg')"
 >
   <!-- Overlay oscuro -->
-  <div class="overlay absolute inset-0 bg-black/40"></div>
+  <div class="absolute inset-0 bg-black/40"></div>
 
   <!-- Contenido -->
   <div class="relative z-10 px-6 md:px-12 animate-fadeIn max-w-lg">
@@ -17,9 +20,17 @@
     </p>
 
     <div class="flex flex-col md:flex-row items-end md:items-center space-y-2 md:space-y-0 md:space-x-4 mb-4">
-      <div class="text-lg md:text-xl">{{ translate.instant('home.day') }}</div>
-      <div class="text-4xl font-bold border-y-2 border-white px-4">{{ translate.instant('home.date') }}</div>
-      <div class="text-lg md:text-xl">{{ translate.instant('home.monthYear') }}</div>
+      <div class="text-lg md:text-xl">
+        {{ translate.instant('home.day') }}
+      </div>
+
+      <div class="text-4xl font-bold border-y-2 border-white px-4">
+        {{ translate.instant('home.date') }}
+      </div>
+
+      <div class="text-lg md:text-xl">
+        {{ translate.instant('home.monthYear') }}
+      </div>
     </div>
   </div>
 </section>
