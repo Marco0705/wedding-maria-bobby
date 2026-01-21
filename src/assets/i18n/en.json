@@ -98,7 +98,7 @@
   },
 
   "weddingList": {
-    "toastCopied": "Account number copied!",
+    "toastCopied": "copied!",
     "title": "The most important thing is that you are with us on this special day!",
     "message": "If you still want to give us a little boost for our future honeymoon (the one we didn’t have 5 years ago), you can use our accounts in the USA or Spain, or whichever is more convenient.",
     "spanishAccount": {
@@ -106,9 +106,8 @@
       "ibanLabel": "IBAN"
     },
     "usaAccount": {
-      "title": "American Account - Rockland Federal Credit Union",
-      "accountLabel": "Account Number",
-      "routingLabel": "Routing Number"
+      "title": "Venmo",
+      "accountLabel": "Venmo"
     },
     "copy": "Copy",
     "finalMessage": "We look forward to celebrating our Spanish wedding with you!"

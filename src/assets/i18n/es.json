@@ -106,9 +106,8 @@
       "ibanLabel": "IBAN"
     },
     "usaAccount": {
-      "title": "Cuenta Americana - Rockland Federal Credit Union",
-      "accountLabel": "Account Number",
-      "routingLabel": "Routing Number"
+      "title": "Venmo",
+      "accountLabel": "Venmo"
     },
     "copy": "Copiar",
     "finalMessage": "¡Estamos deseando celebrar nuestra boda española contigo!"
