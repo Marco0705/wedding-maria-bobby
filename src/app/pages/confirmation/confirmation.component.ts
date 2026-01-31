@@ -25,7 +25,7 @@ export class ConfirmationComponent implements OnInit {
   protected translate = inject(TranslationService);
 
   private SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbzBMkZsMlW79RD7h3citf68BrsWB6xN-1giY85q-x8m6DSiHMDgMtdwrC_6Mu_xDAOY/exec';
+    'https://script.google.com/macros/s/AKfycbw4gPKJkNFCC_opZ3hlnInQqbhRhI5K5gYe8Gvc2NyIE1KcRJdHH2rAKGpZNszEygt1/exec';
 
   ngOnInit(): void {
     this.createForm();
@@ -112,40 +112,43 @@ export class ConfirmationComponent implements OnInit {
   private sendForm(data: any) {
     this.isSubmitting = true;
 
-    // Reemplazar campos vacíos por "No"
     const preparedData: any = {};
     Object.keys(data).forEach((key) => {
       preparedData[key] =
         data[key] && data[key].trim() !== '' ? data[key] : 'No';
     });
 
-    const formData = new FormData();
-    Object.keys(preparedData).forEach((key) =>
-      formData.append(key, preparedData[key]),
-    );
+    // Enviar JSON directamente
+    this.http
+      .post<{ status: string; message: string; data?: any }>(
+        this.SCRIPT_URL,
+        preparedData,
+        { headers: { 'Content-Type': 'application/json' } }, // ⚠️ Muy importante
+      )
+      .subscribe({
+        next: (parsed) => {
+          this.isSubmitting = false;
 
-    this.http.post(this.SCRIPT_URL, formData).subscribe({
-      next: (response: any) => {
-        this.isSubmitting = false;
-        if (response.status === 'success') {
-          Swal.fire({
-            icon: 'success',
-            title: this.translate.instant('confirmation.swal.successTitle'),
-            text: this.translate.instant('confirmation.swal.successText'),
-            timer: 2000,
-            timerProgressBar: true,
-            showConfirmButton: false,
-          });
-          this.form.reset();
-        } else {
+          if (parsed.status === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: this.translate.instant('confirmation.swal.successTitle'),
+              text: this.translate.instant('confirmation.swal.successText'),
+              timer: 2000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+            });
+            this.form.reset();
+          } else {
+            this.errorMessage();
+          }
+        },
+        error: (err) => {
+          console.error('Error HTTP:', err);
+          this.isSubmitting = false;
           this.errorMessage();
-        }
-      },
-      error: () => {
-        this.isSubmitting = false;
-        this.errorMessage();
-      },
-    });
+        },
+      });
   }
 
   private errorMessage() {
