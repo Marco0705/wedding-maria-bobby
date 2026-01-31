@@ -25,7 +25,7 @@ export class ConfirmationComponent implements OnInit {
   protected translate = inject(TranslationService);
 
   private SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbw4gPKJkNFCC_opZ3hlnInQqbhRhI5K5gYe8Gvc2NyIE1KcRJdHH2rAKGpZNszEygt1/exec';
+    'https://script.google.com/macros/s/AKfycbzpLK1RLl-zN0ZyF_a13gDjWGXpH5U0O36yNK8sIuf1SGMcda6fX8_kSAlKB8zOmkfv/exec'; // reemplaza con tu script
 
   ngOnInit(): void {
     this.createForm();
@@ -43,7 +43,6 @@ export class ConfirmationComponent implements OnInit {
   }
 
   handleFormChanges() {
-    // Validación condicional para nombreInvitado
     this.form.get('invitadoSiNo')?.valueChanges.subscribe((value) => {
       const control = this.form.get('nombreInvitado');
       if (value === 'Sí') {
@@ -55,7 +54,6 @@ export class ConfirmationComponent implements OnInit {
       control?.updateValueAndValidity();
     });
 
-    // Solo validar nombreCompleto si asistencia = Sí
     this.form.get('asistencia')?.valueChanges.subscribe((value) => {
       const control = this.form.get('nombreCompleto');
       if (value === 'Sí') {
@@ -68,40 +66,29 @@ export class ConfirmationComponent implements OnInit {
     });
   }
 
-  getErrorMessage(fieldName: string): string {
-    const field = this.form.get(fieldName);
-    if (field && field.errors && field.touched) {
-      if (field.errors['required']) {
-        switch (fieldName) {
-          case 'nombreCompleto':
-            return this.translate.instant('confirmation.errors.fullName');
-          case 'nombreInvitado':
-            return this.translate.instant('confirmation.errors.guestName');
-          case 'asistencia':
-            return this.translate.instant('confirmation.errors.attendance');
-          default:
-            return this.translate.instant('confirmation.errors.required');
-        }
-      }
-    }
-    return '';
-  }
-
   hasError(fieldName: string): boolean {
     const field = this.form.get(fieldName);
     return !!(field && field.errors && field.touched);
   }
 
-  onSubmit(): void {
-    if (this.form.get('asistencia')?.value === 'No') {
-      if (this.form.get('asistencia')?.invalid) {
-        this.form.get('asistencia')?.markAsTouched();
-        return;
+  getErrorMessage(fieldName: string): string {
+    const field = this.form.get(fieldName);
+    if (field && field.errors && field.touched && field.errors['required']) {
+      switch (fieldName) {
+        case 'nombreCompleto':
+          return this.translate.instant('confirmation.errors.fullName');
+        case 'nombreInvitado':
+          return this.translate.instant('confirmation.errors.guestName');
+        case 'asistencia':
+          return this.translate.instant('confirmation.errors.attendance');
+        default:
+          return this.translate.instant('confirmation.errors.required');
       }
-      this.sendForm({ asistencia: 'No' });
-      return;
     }
+    return '';
+  }
 
+  onSubmit(): void {
     if (this.form.valid) {
       this.sendForm(this.form.value);
     } else {
@@ -114,22 +101,20 @@ export class ConfirmationComponent implements OnInit {
 
     const preparedData: any = {};
     Object.keys(data).forEach((key) => {
-      preparedData[key] =
-        data[key] && data[key].trim() !== '' ? data[key] : 'No';
+      preparedData[key] = data[key]?.trim() || 'No';
     });
 
-    // Enviar JSON directamente
     this.http
-      .post<{ status: string; message: string; data?: any }>(
-        this.SCRIPT_URL,
-        preparedData,
-        { headers: { 'Content-Type': 'application/json' } }, // ⚠️ Muy importante
-      )
+      .post<{
+        status: string;
+        message: string;
+      }>(this.SCRIPT_URL, preparedData, {
+        headers: { 'Content-Type': 'application/json' },
+      })
       .subscribe({
-        next: (parsed) => {
+        next: (res) => {
           this.isSubmitting = false;
-
-          if (parsed.status === 'success') {
+          if (res?.status === 'success') {
             Swal.fire({
               icon: 'success',
               title: this.translate.instant('confirmation.swal.successTitle'),
@@ -140,22 +125,25 @@ export class ConfirmationComponent implements OnInit {
             });
             this.form.reset();
           } else {
-            this.errorMessage();
+            this.showError();
           }
         },
         error: (err) => {
-          console.error('Error HTTP:', err);
+          console.error('HTTP Error:', err);
           this.isSubmitting = false;
-          this.errorMessage();
+          // Si es localhost y falla CORS, mostramos mensaje genérico
+          this.showError(true);
         },
       });
   }
 
-  private errorMessage() {
+  private showError(isLocalhost: boolean = false) {
     Swal.fire({
       icon: 'error',
       title: this.translate.instant('confirmation.swal.errorTitle'),
-      text: this.translate.instant('confirmation.swal.errorText'),
+      text: isLocalhost
+        ? this.translate.instant('confirmation.swal.errorTextLocalhost')
+        : this.translate.instant('confirmation.swal.errorText'),
     });
   }
 }
