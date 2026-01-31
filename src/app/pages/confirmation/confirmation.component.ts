@@ -25,7 +25,7 @@ export class ConfirmationComponent implements OnInit {
   protected translate = inject(TranslationService);
 
   private SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbxyFQx8-wkk4baOofttzpQvQMm6rXVHFECztZ5qQYj9hnUidc0AMIWweRuXbHEwEF9M/exec';
+    'https://script.google.com/macros/s/AKfycbzBMkZsMlW79RD7h3citf68BrsWB6xN-1giY85q-x8m6DSiHMDgMtdwrC_6Mu_xDAOY/exec';
 
   ngOnInit(): void {
     this.createForm();
