@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { TranslationService } from '../../services/translation.service';
@@ -25,7 +25,7 @@ export class ConfirmationComponent implements OnInit {
   protected translate = inject(TranslationService);
 
   private SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbzEzDMxNLCQl82xfu-moQW4k4UTmFxfBF2SonLVgdgLojmYP5MwAQdkNdgQdpYni5QS/exec';
+    'https://script.google.com/macros/s/AKfycbzW70lX4BHnp9IKCocUV6xyBw_SY3pTXbwl86qfHVVMZ1JpIxmUxOGxcY1rvNl6gDpN/exec';
 
   ngOnInit(): void {
     this.createForm();
@@ -112,40 +112,40 @@ export class ConfirmationComponent implements OnInit {
   private sendForm(data: any) {
     this.isSubmitting = true;
 
-    // Reemplazar campos vacíos por "No"
     const preparedData: any = {};
     Object.keys(data).forEach((key) => {
       preparedData[key] =
-        data[key] && data[key].trim() !== '' ? data[key] : 'No';
+        data[key] && data[key].toString().trim() !== '' ? data[key] : 'No';
     });
 
-    const formData = new FormData();
+    // Convertimos los datos a un formato que Google entiende como parámetros
+    const urlParams = new URLSearchParams();
     Object.keys(preparedData).forEach((key) =>
-      formData.append(key, preparedData[key]),
+      urlParams.set(key, preparedData[key]),
     );
 
-    this.http.post(this.SCRIPT_URL, formData).subscribe({
-      next: (response: any) => {
+    // Usamos fetch en lugar de HttpClient para tener control total sobre el modo
+    fetch(`${this.SCRIPT_URL}?${urlParams.toString()}`, {
+      method: 'POST',
+      mode: 'no-cors', // <--- Esto es la clave
+    })
+      .then(() => {
+        // Con 'no-cors' no podemos leer la respuesta, pero si llega aquí es que se envió
         this.isSubmitting = false;
-        if (response.status === 'success') {
-          Swal.fire({
-            icon: 'success',
-            title: this.translate.instant('confirmation.swal.successTitle'),
-            text: this.translate.instant('confirmation.swal.successText'),
-            timer: 2000,
-            timerProgressBar: true,
-            showConfirmButton: false,
-          });
-          this.form.reset();
-        } else {
-          this.errorMessage();
-        }
-      },
-      error: () => {
+        Swal.fire({
+          icon: 'success',
+          title: this.translate.instant('confirmation.swal.successTitle'),
+          text: this.translate.instant('confirmation.swal.successText'),
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        this.form.reset();
+      })
+      .catch((error) => {
+        console.error('Error crítico:', error);
         this.isSubmitting = false;
         this.errorMessage();
-      },
-    });
+      });
   }
 
   private errorMessage() {
