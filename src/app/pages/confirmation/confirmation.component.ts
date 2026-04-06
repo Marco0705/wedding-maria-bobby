@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { TranslationService } from '../../services/translation.service';
@@ -35,7 +35,7 @@ export class ConfirmationComponent implements OnInit {
   createForm() {
     this.form = new FormGroup({
       asistencia: new FormControl('', Validators.required),
-      nombreCompleto: new FormControl('', Validators.required),
+      nombreCompleto: new FormControl('', Validators.required), // SIEMPRE requerido
       invitadoSiNo: new FormControl(''),
       nombreInvitado: new FormControl(''),
       alergias: new FormControl(''),
@@ -43,33 +43,24 @@ export class ConfirmationComponent implements OnInit {
   }
 
   handleFormChanges() {
-    // Validación condicional para nombreInvitado
+    // Validación dinámica para invitado
     this.form.get('invitadoSiNo')?.valueChanges.subscribe((value) => {
       const control = this.form.get('nombreInvitado');
-      if (value === 'Sí') {
-        control?.setValidators([Validators.required]);
-      } else {
-        control?.clearValidators();
-        control?.setValue('');
-      }
-      control?.updateValueAndValidity();
-    });
 
-    // Solo validar nombreCompleto si asistencia = Sí
-    this.form.get('asistencia')?.valueChanges.subscribe((value) => {
-      const control = this.form.get('nombreCompleto');
       if (value === 'Sí') {
         control?.setValidators([Validators.required]);
       } else {
         control?.clearValidators();
         control?.setValue('');
       }
+
       control?.updateValueAndValidity();
     });
   }
 
   getErrorMessage(fieldName: string): string {
     const field = this.form.get(fieldName);
+
     if (field && field.errors && field.touched) {
       if (field.errors['required']) {
         switch (fieldName) {
@@ -79,11 +70,10 @@ export class ConfirmationComponent implements OnInit {
             return this.translate.instant('confirmation.errors.guestName');
           case 'asistencia':
             return this.translate.instant('confirmation.errors.attendance');
-          default:
-            return this.translate.instant('confirmation.errors.required');
         }
       }
     }
+
     return '';
   }
 
@@ -93,15 +83,6 @@ export class ConfirmationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.form.get('asistencia')?.value === 'No') {
-      if (this.form.get('asistencia')?.invalid) {
-        this.form.get('asistencia')?.markAsTouched();
-        return;
-      }
-      this.sendForm({ asistencia: 'No' });
-      return;
-    }
-
     if (this.form.valid) {
       this.sendForm(this.form.value);
     } else {
@@ -118,20 +99,18 @@ export class ConfirmationComponent implements OnInit {
         data[key] && data[key].toString().trim() !== '' ? data[key] : 'No';
     });
 
-    // Convertimos los datos a un formato que Google entiende como parámetros
     const urlParams = new URLSearchParams();
     Object.keys(preparedData).forEach((key) =>
       urlParams.set(key, preparedData[key]),
     );
 
-    // Usamos fetch en lugar de HttpClient para tener control total sobre el modo
     fetch(`${this.SCRIPT_URL}?${urlParams.toString()}`, {
       method: 'POST',
-      mode: 'no-cors', // <--- Esto es la clave
+      mode: 'no-cors',
     })
       .then(() => {
-        // Con 'no-cors' no podemos leer la respuesta, pero si llega aquí es que se envió
         this.isSubmitting = false;
+
         Swal.fire({
           icon: 'success',
           title: this.translate.instant('confirmation.swal.successTitle'),
@@ -139,10 +118,11 @@ export class ConfirmationComponent implements OnInit {
           timer: 2000,
           showConfirmButton: false,
         });
+
         this.form.reset();
       })
       .catch((error) => {
-        console.error('Error crítico:', error);
+        console.error('Error:', error);
         this.isSubmitting = false;
         this.errorMessage();
       });

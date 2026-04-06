@@ -16,85 +16,106 @@
       </p>
     </div>
 
-    <!-- Panel Derecho - Formulario -->
+    <!-- Panel Derecho -->
     <div class="p-6 sm:p-8 md:p-16">
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6 w-full">
 
-        <!-- ¿Contamos contigo? -->
+        <!-- Asistencia -->
         <div>
           <label class="block text-xs font-semibold text-gray-800 uppercase mb-2">
             {{translate.instant('confirmation.attendanceLabel')}} <span class="text-[#d4a574]">*</span>
           </label>
+
           <div class="flex flex-wrap gap-4 mt-2">
             <label class="flex flex-col items-center cursor-pointer">
               <input type="radio" formControlName="asistencia" value="Sí" class="hidden peer">
               <div class="w-14 h-14 flex items-center justify-center text-2xl rounded-lg border-2 border-transparent bg-gray-100 peer-checked:bg-[#e8dfd6] peer-checked:border-[#d4a574] transition">💙</div>
               <span class="mt-1 text-sm text-gray-600">{{translate.instant('confirmation.attendanceYes')}}</span>
             </label>
+
             <label class="flex flex-col items-center cursor-pointer">
               <input type="radio" formControlName="asistencia" value="No" class="hidden peer">
               <div class="w-14 h-14 flex items-center justify-center text-2xl rounded-lg border-2 border-transparent bg-gray-100 peer-checked:bg-[#e8dfd6] peer-checked:border-[#d4a574] transition">✖️</div>
               <span class="mt-1 text-sm text-gray-600">{{translate.instant('confirmation.attendanceNo')}}</span>
             </label>
           </div>
+
           <div *ngIf="hasError('asistencia')" class="text-red-500 text-xs mt-1">
             {{ getErrorMessage('asistencia') }}
           </div>
         </div>
 
-        <!-- Contenido condicional si asistencia = Sí -->
+        <!-- Nombre SIEMPRE visible -->
+        <div *ngIf="form.get('asistencia')?.value">
+          <label class="block text-xs font-semibold text-gray-800 uppercase mb-2">
+            {{translate.instant('confirmation.fullName')}} <span class="text-[#d4a574]">*</span>
+          </label>
+
+          <input type="text" formControlName="nombreCompleto"
+            placeholder="{{translate.instant('confirmation.fullNamePlaceholder')}}"
+            class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#d4a574] bg-gray-50">
+
+          <div *ngIf="hasError('nombreCompleto')" class="text-red-500 text-xs mt-1">
+            {{ getErrorMessage('nombreCompleto') }}
+          </div>
+        </div>
+
+        <!-- SOLO SI ASISTE -->
         <div *ngIf="form.get('asistencia')?.value === 'Sí'" class="space-y-4">
 
-          <div class="w-full">
-            <label for="nombreCompleto" class="block text-xs font-semibold text-gray-800 uppercase mb-2">
-              {{translate.instant('confirmation.fullName')}} <span class="text-[#d4a574]">*</span>
-            </label>
-            <input id="nombreCompleto" type="text" formControlName="nombreCompleto" placeholder="{{translate.instant('confirmation.fullNamePlaceholder')}}" 
-                   class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#d4a574] focus:bg-white bg-gray-50">
-            <div *ngIf="hasError('nombreCompleto')" class="text-red-500 text-xs mt-1">
-              {{ getErrorMessage('nombreCompleto') }}
-            </div>
-          </div>
-
-          <div class="w-full">
+          <!-- Invitado -->
+          <div>
             <label class="block text-xs font-semibold text-gray-800 uppercase mb-2">
-              {{translate.instant('confirmation.guestLabel')}} <span class="text-[#d4a574]">*</span>
+              {{translate.instant('confirmation.guestLabel')}}
             </label>
-            <div class="flex flex-wrap gap-4 mt-2">
+
+            <div class="flex gap-4 mt-2">
               <label class="flex items-center gap-2 cursor-pointer">
                 <input type="radio" formControlName="invitadoSiNo" value="No" class="hidden peer">
-                <div class="w-5 h-5 border-2 border-[#d4a574] rounded-full relative peer-checked:bg-[#d4a574]"></div>
+                <div class="w-5 h-5 border-2 border-[#d4a574] rounded-full peer-checked:bg-[#d4a574]"></div>
                 <span class="text-sm text-gray-600">1</span>
               </label>
+
               <label class="flex items-center gap-2 cursor-pointer">
                 <input type="radio" formControlName="invitadoSiNo" value="Sí" class="hidden peer">
-                <div class="w-5 h-5 border-2 border-[#d4a574] rounded-full relative peer-checked:bg-[#d4a574]"></div>
+                <div class="w-5 h-5 border-2 border-[#d4a574] rounded-full peer-checked:bg-[#d4a574]"></div>
                 <span class="text-sm text-gray-600">2</span>
               </label>
             </div>
           </div>
 
-          <div *ngIf="form.get('invitadoSiNo')?.value === 'Sí'" class="w-full">
-            <label for="nombreInvitado" class="block text-xs font-semibold text-gray-800 uppercase mb-2">
+          <!-- Nombre invitado -->
+          <div *ngIf="form.get('invitadoSiNo')?.value === 'Sí'">
+            <label class="block text-xs font-semibold text-gray-800 uppercase mb-2">
               {{translate.instant('confirmation.guestName')}} <span class="text-[#d4a574]">*</span>
             </label>
-            <input id="nombreInvitado" type="text" formControlName="nombreInvitado" placeholder="{{translate.instant('confirmation.guestNamePlaceholder')}}" 
-                   class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#d4a574] focus:bg-white bg-gray-50">
+
+            <input type="text" formControlName="nombreInvitado"
+              placeholder="{{translate.instant('confirmation.guestNamePlaceholder')}}"
+              class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#d4a574] bg-gray-50">
+
             <div *ngIf="hasError('nombreInvitado')" class="text-red-500 text-xs mt-1">
               {{ getErrorMessage('nombreInvitado') }}
             </div>
           </div>
 
-          <div class="w-full">
-            <label for="alergias" class="block text-xs font-semibold text-gray-800 uppercase mb-2">{{translate.instant('confirmation.allergies')}}</label>
-            <input id="alergias" type="text" formControlName="alergias" placeholder="{{translate.instant('confirmation.allergiesPlaceholder')}}" 
-                   class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#d4a574] focus:bg-white bg-gray-50">
+          <!-- Alergias -->
+          <div>
+            <label class="block text-xs font-semibold text-gray-800 uppercase mb-2">
+              {{translate.instant('confirmation.allergies')}}
+            </label>
+
+            <input type="text" formControlName="alergias"
+              placeholder="{{translate.instant('confirmation.allergiesPlaceholder')}}"
+              class="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#d4a574] bg-gray-50">
           </div>
+
         </div>
 
+        <!-- Botón -->
         <div class="text-center">
-          <button type="submit" [disabled]="isSubmitting" 
-                  class="bg-gray-900 text-white px-8 py-3 rounded-lg text-sm font-medium uppercase tracking-wide hover:bg-gray-800 disabled:bg-gray-400 w-full sm:w-auto">
+          <button type="submit" [disabled]="isSubmitting"
+            class="bg-gray-900 text-white px-8 py-3 rounded-lg text-sm uppercase w-full sm:w-auto">
             {{ isSubmitting ? translate.instant('confirmation.sending') : translate.instant('confirmation.submit') }}
           </button>
         </div>
